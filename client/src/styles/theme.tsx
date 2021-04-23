@@ -1,10 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 
-type Padding = {
-  page: number;
-};
-
 export type ThemeType = {
   color: {
     primary: string;
@@ -20,7 +16,6 @@ export type ThemeType = {
     l: number;
     xl: number;
   };
-  padding: Padding;
 };
 
 const theme: DefaultTheme = {
@@ -37,9 +32,6 @@ const theme: DefaultTheme = {
     m: 768,
     l: 992,
     xl: 1200,
-  },
-  padding: {
-    page: 20,
   },
 };
 
