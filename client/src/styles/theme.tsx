@@ -11,6 +11,10 @@ export type ThemeType = {
   };
   breakpoints: {
     xs: number;
+    s: number;
+    m: number;
+    l: number;
+    xl: number;
   };
 };
 
@@ -24,6 +28,10 @@ const theme: DefaultTheme = {
   },
   breakpoints: {
     xs: 370,
+    s: 600,
+    m: 768,
+    l: 992,
+    xl: 1200,
   },
 };
 

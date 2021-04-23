@@ -1,12 +1,14 @@
 import React from 'react';
 import * as S from './App.style';
-import FileUpload from '../FileUpload';
+import Section from '../Section/Section';
+import Container from '../Container/Container';
 
 function App() {
   return (
     <S.Wrapper>
-      Setup complete
-      <FileUpload />
+      <Section>
+        <Container>Container</Container>
+      </Section>
     </S.Wrapper>
   );
 }
