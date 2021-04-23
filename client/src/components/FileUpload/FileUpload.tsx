@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './FileUpload.style';
+// import * as S from './FileUpload.style';
 
 function FileUpload() {
   return <div>File Upload</div>;
