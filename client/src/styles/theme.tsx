@@ -5,6 +5,14 @@ type Padding = {
   page: number;
 };
 
+type BorderRadius = {
+  main: number;
+};
+
+type Animation = {
+  short: string;
+};
+
 export type ThemeType = {
   color: {
     primary: string;
@@ -21,12 +29,18 @@ export type ThemeType = {
     xl: number;
   };
   padding: Padding;
+  borderRadius: BorderRadius;
+  animation: Animation;
 };
 
 const theme: DefaultTheme = {
   color: {
     primary: 'var(--color-primary)',
+    primaryLight: 'var(--color-primary-light)',
+    primaryDark: 'var(--color-primary-dark)',
     secondary: 'var(--color-secondary)',
+    secondaryLight: 'var(--color-secondary-light)',
+    secondaryDark: 'var(--color-secondary-dark)',
   },
   colorText: {
     body: 'var(--color-text-body)',
@@ -40,6 +54,12 @@ const theme: DefaultTheme = {
   },
   padding: {
     page: 20,
+  },
+  borderRadius: {
+    main: 6,
+  },
+  animation: {
+    short: '170ms',
   },
 };
 

@@ -4,7 +4,11 @@ const GlobalStyle = createGlobalStyle`
   /* Variables */
   html {
     --color-primary: #51B6FE;
-    --color-secondary: #ff00ff;
+    --color-primary-light: #ff00ff;
+    --color-primary-dark: #ff00ff;
+    --color-secondary: #ffff00;
+    --color-secondary-light: #ff00ff;
+    --color-secondary-dark: #ff00ff;
     --color-text-body: #39496a;
   }
   #root {
