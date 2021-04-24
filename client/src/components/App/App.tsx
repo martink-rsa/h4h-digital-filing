@@ -2,8 +2,12 @@ import React, { useEffect } from 'react';
 import * as S from './App.style';
 
 import Layout from '../Layout/Layout';
+import Section from '../Section/Section';
+import PatientDisplayTable from '../PatientDisplayTable/PatientDisplayTable';
 
 import { doFetch } from '../utils/common';
+
+import { fileDisplayTableData } from '../../data/dummyData';
 
 const url =
   'https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=490f24bcbc3a2ee5cb3e70d10b15bfab';
@@ -23,7 +27,11 @@ function App() {
 
   return (
     <S.Wrapper>
-      <Layout>App page</Layout>
+      <Layout>
+        <Section>
+          <PatientDisplayTable data={fileDisplayTableData} />
+        </Section>
+      </Layout>
     </S.Wrapper>
   );
 }

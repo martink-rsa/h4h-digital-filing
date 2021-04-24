@@ -41,6 +41,11 @@ const theme: DefaultTheme = {
     secondary: 'var(--color-secondary)',
     secondaryLight: 'var(--color-secondary-light)',
     secondaryDark: 'var(--color-secondary-dark)',
+    gray: {
+      100: 'var(--color-gray-100)',
+      200: 'var(--color-gray-200)',
+      300: 'var(--color-gray-300)',
+    },
   },
   colorText: {
     body: 'var(--color-text-body)',

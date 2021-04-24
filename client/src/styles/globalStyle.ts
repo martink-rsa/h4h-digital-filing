@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     --color-secondary-light: #ff00ff;
     --color-secondary-dark: #ff00ff;
     --color-text-body: #39496a;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #d5d5d5;
+    --color-gray-300: #999;
   }
   #root {
     height: 100vh;
