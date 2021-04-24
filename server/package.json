@@ -14,7 +14,10 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "@types/express-jwt": "^6.0.1",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jwks-rsa": "^2.0.3",
     "ts-jest": "^26.5.5"
   },
   "devDependencies": {
