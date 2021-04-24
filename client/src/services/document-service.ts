@@ -1,4 +1,5 @@
 import Dexie from "dexie";
+import Fuse from "fuse.js";
 import { Document } from "../models/document";
 
 class DocumentService {
@@ -16,6 +17,7 @@ class DocumentService {
   }
 
   async findDocuments(
+    keyword: string = "",
     tags: Array<any> = [],
     categories: Array<any> = [],
     name?: string,
@@ -25,17 +27,15 @@ class DocumentService {
 
     const docs = await this.db.documents.toArray();
 
-    /*.each((doc: Document) => {
-      return {
-        id: doc.id,
-        name: doc.name,
-        fileType: doc.fileType,
-        size: doc.size,
-        tags: doc.tags,
-        categories: doc.categories,
-      };
-    });*/
-    return docs;
+    if (!keyword) return docs;
+
+    const options = {
+      includeScore: true,
+      keys: ["name", "extractedText", "tags", "categories"],
+    };
+    const fuse = new Fuse(docs, options);
+    const result = fuse.search<Document>(keyword);
+    return result.map((obj) => obj.item);
   }
 }
 
