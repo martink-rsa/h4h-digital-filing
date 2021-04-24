@@ -1,3 +1,1 @@
-import { File } from './file';
-
-export type { File };
+export * from "./file";
