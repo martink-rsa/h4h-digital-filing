@@ -1,4 +1,4 @@
-export class Document {
+export class File {
   id?: string;
   name?: string;
   fileType?: string;
