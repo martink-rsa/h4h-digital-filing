@@ -1,31 +1,31 @@
 import Dexie from "dexie";
 import Fuse from "fuse.js";
-import { Document } from "../models/document";
+import { File } from "../models/file";
 
-class DocumentService {
+class FileService {
   db: any = new Dexie("h4h-digital-filing");
 
   constructor() {
     this.db.version(1).stores({
-      documents:
+      files:
         "++id, name, fileType, size, extractedText, fileBlob, tags, categories",
     });
   }
 
-  addDocument(document: Document) {
-    this.db.documents.add(document);
+  addFile(file: File) {
+    this.db.files.add(file);
   }
 
-  async findDocuments(
+  async findFiles(
     keyword: string = "",
     tags: Array<any> = [],
     categories: Array<any> = [],
     name?: string,
     fileType?: string
-  ): Promise<Array<Document>> {
+  ): Promise<Array<File>> {
     // TODO: Maybe query db high level before doing Fuze/Fuzzy search
 
-    const docs = await this.db.documents.toArray();
+    const docs = await this.db.files.toArray();
 
     if (!keyword) return docs;
 
@@ -34,12 +34,12 @@ class DocumentService {
       keys: ["name", "extractedText", "tags", "categories"],
     };
     const fuse = new Fuse(docs, options);
-    const result = fuse.search<Document>(keyword);
+    const result = fuse.search<File>(keyword);
     return result.map((obj) => obj.item);
   }
 }
 
 // Single instance
-const documentService = new DocumentService();
+const fileService = new FileService();
 
-export { documentService };
+export { fileService };

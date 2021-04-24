@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createWorker, ImageLike } from "tesseract.js";
-import { Document } from "../../models";
-import { documentService } from "../../services";
+import { File } from "../../models";
+import { fileService } from "../../services";
 import Button from "../Button/Button";
 import * as S from "./FileUpload.style";
 
@@ -12,25 +12,25 @@ function FileUpload() {
     size: number;
     lastModifiedDate: Date;
   }>();
-  const [document, setDocument] = useState<Document>(new Document());
+  const [file, setFile] = useState<File>(new File());
   const [isSelected, setIsSelected] = useState(false);
   const [ocrProgress, setOcrProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const changeHandler = (event: any) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+    const f = event.target.files[0];
+    setSelectedFile(f);
 
     let reader = new FileReader();
-    reader.readAsArrayBuffer(file);
+    reader.readAsArrayBuffer(f);
     reader.onload = () => {
-      document.fileBlob = reader.result;
+      file.fileBlob = reader.result;
     };
 
-    document.name = file.name;
-    document.fileType = file.type;
-    document.size = file.size;
-    setDocument(document);
+    file.name = f.name;
+    file.fileType = f.type;
+    file.size = f.size;
+    setFile(file);
 
     setIsSelected(true);
   };
@@ -54,9 +54,9 @@ function FileUpload() {
     } = await worker.recognize(selectedFile as any); // TODO: Not sure on type?
     console.log("Recognized text:", text);
 
-    document.extractedText = text;
-    setDocument(document);
-    documentService.addDocument(document);
+    file.extractedText = text;
+    setFile(file);
+    fileService.addFile(file);
 
     setIsSelected(false);
     setIsLoading(false);
