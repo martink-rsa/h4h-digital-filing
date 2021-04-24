@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./App.style";
 
 import Layout from "../Layout/Layout";
 import Button from "../Button/Button";
+import { Document } from "../../models";
+import { documentService } from "../../services";
 
 const { createWorker } = require("tesseract.js");
 
@@ -13,35 +15,70 @@ function App() {
     size: number;
     lastModifiedDate: Date;
   }>();
+  const [document, setDocument] = useState<Document>(new Document());
   const [isSelected, setIsSelected] = useState(false);
+  const [ocrProgress, setOcrProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [documents, setDocuments] = useState([]);
+
+  useEffect(() => {
+    documentService.findDocuments().then((docs) => {
+      console.log(docs);
+    });
+  }, []);
 
   const changeHandler = (event: any) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    let reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      document.fileBlob = reader.result;
+    };
+
+    document.name = file.name;
+    document.fileType = file.type;
+    document.size = file.size;
+    setDocument(document);
+
     setIsSelected(true);
   };
 
   const handleSubmission = async () => {
-    console.log(selectedFile);
+    setIsLoading(true);
 
     const worker = createWorker({
-      logger: (m: any) => console.log(m),
+      logger: (m: any) => {
+        if (m.status === "recognizing text") {
+          setOcrProgress(m.progress * 100);
+        }
+      },
     });
 
     await worker.load();
     await worker.loadLanguage("eng");
     await worker.initialize("eng");
-    console.log("Recognizing...");
     const {
       data: { text },
     } = await worker.recognize(selectedFile);
     console.log("Recognized text:", text);
-    await worker.terminate();
+
+    document.extractedText = text;
+    setDocument(document);
+    documentService.addDocument(document);
+
+    setIsSelected(false);
+    setIsLoading(false);
+
+    document.name = await worker.terminate();
   };
 
   return (
     <S.Wrapper>
       <Layout>
         <div>
+          {isLoading && <p>{`${ocrProgress.toFixed(2)}%`}</p>}
           <input type="file" name="file" onChange={changeHandler} />
           {isSelected && selectedFile ? (
             <div>
@@ -52,7 +89,7 @@ function App() {
                 lastModifiedDate:{" "}
                 {selectedFile?.lastModifiedDate.toLocaleDateString()}
               </p>
-              <Button onClick={handleSubmission}>Submit</Button>
+              {!isLoading && <Button onClick={handleSubmission}>Submit</Button>}
             </div>
           ) : (
             <p>Select a file to show details</p>
