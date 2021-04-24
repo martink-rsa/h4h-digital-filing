@@ -3,10 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   /* Variables */
   html {
-    --color-primary: #51B6FE;
+    --color-primary: #00A99D;
     --color-primary-light: #ff00ff;
     --color-primary-dark: #ff00ff;
-    --color-secondary: #ffff00;
+    --color-secondary: #162750;
     --color-secondary-light: #ff00ff;
     --color-secondary-dark: #ff00ff;
     --color-text-body: #39496a;
@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: var(--color-secondary);
   }
   h1, h2, h3, h4, h5, h6 {
     text-align: center;

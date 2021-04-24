@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './App.style';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
 import Section from '../Section/Section';
 import PatientDisplayTable from '../PatientDisplayTable/PatientDisplayTable';
 import Layout from '../Layout/Layout';
-
-import Home from '../../views/Home/Home';
-
-// import FileUpload from '../FileUpload';
+import FileUpload from '../FileUpload';
 
 import { doFetch } from '../utils/common';
 
-// import { fileDisplayTableData } from '../../data/dummyData';
-// import { fileService } from '../../services';
+import { fileDisplayTableData } from '../../data/dummyData';
+import { fileService } from '../../services';
 import { File } from '../../models';
 
 const url =
@@ -38,24 +28,29 @@ function App() {
       }
     }
     getData(url);
+
+    /* fileService.findFiles().then((files) => {
+      setFiles(files);
+    }); */
   }, []);
 
   return (
-    <Router>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <S.Wrapper>
+      <Layout>asd</Layout>
+    </S.Wrapper>
   );
 }
+
+/* return (
+  <S.Wrapper>
+    <Layout>
+      <Section>
+         <PatientDisplayTable data={files} />
+      </Section>
+      TODO: CALLBACK AFTER UPLOAD TO REFETCH FILES
+       <FileUpload></FileUpload>
+    </Layout>
+  </S.Wrapper>
+); */
 
 export default App;
