@@ -8,7 +8,7 @@ class FileService {
   constructor() {
     this.db.version(1).stores({
       files:
-        "++id, name, fileType, size, extractedText, fileBlob, tags, categories",
+        "++id, fileName, fileType, size, extractedText, fileBlob, tags, category",
     });
   }
 
@@ -31,7 +31,7 @@ class FileService {
 
     const options = {
       includeScore: true,
-      keys: ["name", "extractedText", "tags", "categories"],
+      keys: ["name", "extractedText", "tags", "category"],
     };
     const fuse = new Fuse(docs, options);
     const result = fuse.search<File>(keyword);

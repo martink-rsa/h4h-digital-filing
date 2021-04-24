@@ -1,11 +1,12 @@
 export class File {
   id?: string;
-  name?: string;
+  fileName?: string;
   fileType?: string;
-  size?: number;
+  fileSize?: number;
   extractedText?: string;
   fileBlob?: string | ArrayBuffer | null;
+  dateCreated?: string;
 
-  tags: Array<any> = []; // TODO: Define tags
-  categories: Array<any> = []; // TODO: Define categories
+  tags?: string;
+  category?: string;
 }

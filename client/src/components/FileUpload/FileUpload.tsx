@@ -27,9 +27,12 @@ function FileUpload() {
       file.fileBlob = reader.result;
     };
 
-    file.name = f.name;
+    file.fileName = f.name;
     file.fileType = f.type;
-    file.size = f.size;
+    file.fileSize = f.size;
+    file.dateCreated = f.lastModifiedDate.toLocaleDateString();
+    file.category = "test-category";
+    file.tags = "test-tags";
     setFile(file);
 
     setIsSelected(true);
