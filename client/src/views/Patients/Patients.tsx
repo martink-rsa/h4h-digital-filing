@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
-import * as S from './Patients.style';
+import React, { useState } from "react";
+import * as S from "./Patients.style";
 
-import SearchView from '../../views/Patients/SearchView/SearchView';
-import PatientView from '../../views/Patients/PatientView/PatientView';
+import SearchView from "../../views/Patients/SearchView/SearchView";
+import PatientView from "../../views/Patients/PatientView/PatientView";
 
-import Button from '../../components/Button/Button';
-import Layout from '../../components/Layout/Layout';
-import Input from '../../components/Input/Input';
+import Button from "../../components/Button/Button";
+import Layout from "../../components/Layout/Layout";
+import Input from "../../components/Input/Input";
 
-import IconPlus from '../../assets/images/plus-icon.svg';
-import { doFetch } from '../../components/utils/common';
+import IconPlus from "../../assets/images/plus-icon.svg";
+import { doFetch } from "../../components/utils/common";
 
 function Patients() {
-  const [patient, setPatient] = useState(
-    {} /*{
-    id: 89121800310889,
-    firstName: 'Michael',
-    lastName: 'Scott',
-  }*/,
-  );
+  const [patient, setPatient] = useState(null);
 
   function handleAddFile() {
-    console.log('handleAddFile');
+    console.log("handleAddFile");
   }
   function handleAddPatient() {
-    console.log('handleAddFile');
+    console.log("handleAddFile");
   }
 
   async function handlePatientSearch(searchTerm: string) {
     try {
       const response = await doFetch(
-        `http://localhost:3003/patients?id_number=${searchTerm}`,
+        `http://localhost:3003/patients?search=${searchTerm}`
       );
       if (!response.data.success) {
-        return alert('Failed to find patient');
+        alert("Failed to find patient");
+        setPatient(null);
+        return;
       }
       const patients = response.data.data;
       console.log(patients);
@@ -44,7 +40,7 @@ function Patients() {
 
       setPatient(patients[0]);
     } catch (err) {
-      alert('Failed to find patient');
+      alert("Failed to find patient");
     }
   }
 
@@ -55,7 +51,7 @@ function Patients() {
 
   return (
     <Layout handleAddFile={handleAddFile}>
-      {Object.keys(patient).length > 0 ? (
+      {patient ? (
         <PatientView patient={patient} />
       ) : (
         <SearchView
