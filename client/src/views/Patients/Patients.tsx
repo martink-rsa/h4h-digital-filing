@@ -12,7 +12,11 @@ import IconPlus from "../../assets/images/plus-icon.svg";
 import { doFetch } from "../../components/utils/common";
 
 function Patients() {
-  const [patient, setPatient] = useState({});
+  const [patient, setPatient] = useState({
+    id: 89121800310889,
+    firstName: 'Michael',
+    lastName: 'Scott',
+  });
 
   function handleAddFile() {
     console.log("handleAddFile");
@@ -50,7 +54,7 @@ function Patients() {
   return (
     <Layout handleAddFile={handleAddFile}>
       {Object.keys(patient).length > 0 ? (
-        <PatientView />
+        <PatientView patient={patient} />
       ) : (
         <SearchView
           handleSubmit={handlePatientSearch}

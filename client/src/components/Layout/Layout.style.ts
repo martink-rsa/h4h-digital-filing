@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 
 export const Main = styled.main`
   flex-grow: 1;
+  z-index: 2;
 `;
 
 export const PulseLineDecalContainer = styled.div`
