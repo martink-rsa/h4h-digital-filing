@@ -5,6 +5,8 @@ import Modal from 'react-modal';
 
 import UploadFileModal from '../UploadFileModal/UploadFileModal';
 
+import Demographics from './Demographics/Demographics';
+
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import Accordion from '../../../components/Accordion/Accordion';
@@ -86,7 +88,9 @@ function PatientView({ patient }: Props) {
         </Button>
       </S.HeaderControlsContainer>
       <S.Content>
-        <PatientSection title="Demographics">asd</PatientSection>
+        <PatientSection title="Demographics">
+          <Demographics />
+        </PatientSection>
         <PatientSection title="Vital signs">asd</PatientSection>
         <PatientSection title="Doctor's notes">asd</PatientSection>
         <PatientSection title="Nursing notes">asd</PatientSection>

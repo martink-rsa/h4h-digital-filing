@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import * as S from "./SearchView.style";
+import React, { useState } from 'react';
+import * as S from './SearchView.style';
 
-import Button from "../../../components/Button/Button";
-import Input from "../../../components/Input/Input";
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
 
-import IconPlus from "../../../assets/images/plus-icon.svg";
+import IconPlus from '../../../assets/images/plus-icon.svg';
 
 type Props = {
   handleSubmit: (searchTerm: string) => void;
@@ -12,9 +12,10 @@ type Props = {
 };
 
 function SearchView({ handleSubmit, handleAddPatient }: Props) {
-  const [searchId, setSearchId] = useState("");
+  const [searchId, setSearchId] = useState('');
 
   function handleChange(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     const { value } = event.currentTarget;
     setSearchId(value);
   }
@@ -37,7 +38,13 @@ function SearchView({ handleSubmit, handleAddPatient }: Props) {
           value={searchId}
           pattern="[0-9]{1,10}"
         />
-        <Button onClick={() => handleSubmit(searchId)} width="170px">
+        <Button
+          onClick={(event: any) => {
+            event.preventDefault();
+            handleSubmit(searchId);
+          }}
+          width="170px"
+        >
           Search
         </Button>
       </S.Form>
