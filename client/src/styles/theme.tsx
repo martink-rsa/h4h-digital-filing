@@ -65,6 +65,7 @@ const theme: DefaultTheme = {
   },
   animation: {
     short: '170ms',
+    medium: '220ms',
   },
 };
 

@@ -3,10 +3,13 @@ import * as S from './Button.style';
 
 type Props = {
   onClick: () => any;
+  iconPosition?: string;
   secondary?: boolean;
   disabled?: boolean;
+  type?: any;
   icon?: string;
   width?: string;
+  invert?: boolean;
   children: React.ReactNode;
 };
 
@@ -17,21 +20,58 @@ type Props = {
  * @example
  * <Button>Text</Button>
  */
-function Button(props: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function Button(props: Props) {
   const {
     secondary,
     disabled,
     icon,
+    iconPosition = 'right',
     onClick,
     width = 'auto',
+    invert = false,
     children,
     ...otherProps
   } = props;
 
+  if (invert) {
+    return (
+      <S.InvertButton
+        secondary={secondary}
+        width={width}
+        iconPosition={iconPosition}
+        {...otherProps}
+        onClick={onClick}
+      >
+        {iconPosition === 'left' ? (
+          <>
+            {icon && <img src={icon} alt="" />} {children}
+          </>
+        ) : (
+          <>
+            {children} {icon && <img src={icon} alt="" />}
+          </>
+        )}
+      </S.InvertButton>
+    );
+  }
+
   if (disabled) {
     return (
-      <S.DisabledButton disabled={disabled} width={width} {...otherProps}>
-        {children}
+      <S.DisabledButton
+        disabled={disabled}
+        width={width}
+        iconPosition={iconPosition}
+        {...otherProps}
+      >
+        {iconPosition === 'left' ? (
+          <>
+            {icon && <img src={icon} alt="" />} {children}
+          </>
+        ) : (
+          <>
+            {children} {icon && <img src={icon} alt="" />}
+          </>
+        )}
       </S.DisabledButton>
     );
   }
@@ -39,10 +79,19 @@ function Button(props: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
     <S.Button
       secondary={secondary}
       width={width}
+      iconPosition={iconPosition}
       {...otherProps}
       onClick={onClick}
     >
-      {children} {icon && <img src={icon} alt="" />}
+      {iconPosition === 'left' ? (
+        <>
+          {icon && <img src={icon} alt="" />} {children}
+        </>
+      ) : (
+        <>
+          {children} {icon && <img src={icon} alt="" />}
+        </>
+      )}
     </S.Button>
   );
 }

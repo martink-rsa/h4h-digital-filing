@@ -4,13 +4,33 @@ export const Container = styled.div`
   height: 100%;
   max-width: 954px;
   margin: 0 auto;
-  padding-top: 88px;
+  padding-top: 113px;
+  color: #fff;
 `;
 
-export const AddNewPatientContainer = styled.div`
+export const HeaderInfoContainer = styled.div`
+  font-size: 30px;
+  font-weight: 500;
+  color: ${(props) => props.theme.color.primary};
+
+  span {
+    font-weight: 300;
+    font-size: 30px;
+    color: #fff;
+  }
+`;
+
+export const HeaderControlsContainer = styled.div`
+  margin-top: 30px;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  button:last-of-type {
+    margin-left: 20px;
+  }
+`;
+
+export const Content = styled.div`
+  margin-top: 27px;
 `;
 
 export const Form = styled.form`
