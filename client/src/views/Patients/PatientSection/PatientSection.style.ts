@@ -37,7 +37,7 @@ type ArrowIconProps = {
 };
 
 export const ArrowIcon = styled.img<ArrowIconProps>`
-  transform: rotate(${(props) => (props.isActive ? '180deg' : '0deg')});
+  transform: rotate(${(props) => (props.isActive ? '0deg' : '180deg')});
   transition: transform ${(props) => props.theme.animation.medium} ease-out;
   margin-left: 10px;
 `;
