@@ -2,11 +2,9 @@ import React from 'react';
 import * as S from './Layout.style';
 
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-
-import Logo from '../../assets/images/logo.png';
 
 type Props = {
+  handleAddFile: () => void;
   children: React.ReactNode;
 };
 
@@ -14,12 +12,12 @@ type Props = {
  * A base layout for the site that contains a header and a footer
  * and a main container for inserting the children
  */
-function Layout({ children }: Props) {
+function Layout({ handleAddFile, children }: Props) {
   return (
     <S.Wrapper>
-      <Header logo={Logo} />
+      <Header handleAddFile={handleAddFile} />
       <S.Main>{children}</S.Main>
-      <Footer />
+      <S.PulseLineDecalContainer />
     </S.Wrapper>
   );
 }

@@ -5,6 +5,8 @@ type Props = {
   onClick: () => any;
   secondary?: boolean;
   disabled?: boolean;
+  icon?: string;
+  width?: string;
   children: React.ReactNode;
 };
 
@@ -15,18 +17,32 @@ type Props = {
  * @example
  * <Button>Text</Button>
  */
-function Button({
-  onClick,
-  secondary = false,
-  disabled = false,
-  children,
-}: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function Button(props: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  const {
+    secondary,
+    disabled,
+    icon,
+    onClick,
+    width = 'auto',
+    children,
+    ...otherProps
+  } = props;
+
   if (disabled) {
-    return <S.DisabledButton disabled={disabled}>{children}</S.DisabledButton>;
+    return (
+      <S.DisabledButton disabled={disabled} width={width} {...otherProps}>
+        {children}
+      </S.DisabledButton>
+    );
   }
   return (
-    <S.Button secondary={secondary} onClick={onClick}>
-      {children}
+    <S.Button
+      secondary={secondary}
+      width={width}
+      {...otherProps}
+      onClick={onClick}
+    >
+      {children} {icon && <img src={icon} alt="" />}
     </S.Button>
   );
 }
