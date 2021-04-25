@@ -42,11 +42,7 @@ function PatientSection({ title, children }: Props) {
           <S.ArrowIcon src={ArrowIcon} alt="" isActive={isActive} />
         </S.ControlsContainer>
       </S.HeadingContainer>
-      <AnimateHeight
-        // id="example-panel"
-        duration={500}
-        height={isActive ? 'auto' : 0} // see props documentation below
-      >
+      <AnimateHeight duration={500} height={isActive ? 'auto' : 0}>
         <S.Content>{children}</S.Content>
       </AnimateHeight>
     </S.Wrapper>
