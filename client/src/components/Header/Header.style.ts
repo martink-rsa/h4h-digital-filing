@@ -7,6 +7,9 @@ export const Wrapper = styled.header`
   padding: 0 120px;
   background: #fff;
   height: 90px;
+  @media (max-width: ${(props) => props.theme.breakpoints.s + 'px'}) {
+    padding: 0 10px;
+  }
 `;
 
 export const LeftContainer = styled.div`

@@ -5,6 +5,7 @@ export const Container = styled.div`
   max-width: 954px;
   margin: 0 auto;
   padding-top: 88px;
+  box-sizing: border-box;
 `;
 
 export const AddNewPatientContainer = styled.div`
@@ -15,10 +16,11 @@ export const AddNewPatientContainer = styled.div`
 
 export const Form = styled.form`
   color: #fff;
-  height: 100%;
+  height: calc(100% - 160px);
   margin-top: 120px;
   max-width: 466px;
   margin: 125px auto 0 auto;
+  box-sizing: border-box;
   button {
     margin-top: 20px;
   }
