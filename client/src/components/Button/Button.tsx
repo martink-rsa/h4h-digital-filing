@@ -10,7 +10,6 @@ type Props = {
 
 /**
  * A button that defaults to the primary color
- * @param {function} onClick The function called on click
  * @param {boolean} secondary Uses the secondary color for the button
  * @param {boolean} disabled Disables the button
  * @example
@@ -21,7 +20,7 @@ function Button({
   secondary = false,
   disabled = false,
   children,
-}: Props) {
+}: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   if (disabled) {
     return <S.DisabledButton disabled={disabled}>{children}</S.DisabledButton>;
   }
