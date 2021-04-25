@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "365f9135-b962-4396-beeb-6e0b8519decf",
+		"name": "H4H DigiFilinng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Patients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idNumber\": \"9123456789082\",\n    \"firstName\": \"Bilbo\",\n    \"lastName\": \"Baggins\",\n    \"email\": \"bilbo@theshire.com\",\n    \"phoneNumber\": \"0721234567\",\n    \"gender\": \"male\",\n    \"ethnicity\": \"hobbit\",\n    \"maritalStatus\": \"single\",\n    \"address\": \"the shire\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Patients by ID Number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/patients?id_number=9123456789082",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"patients"
+					],
+					"query": [
+						{
+							"key": "id_number",
+							"value": "9123456789082"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fuzzy Search Patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/patients?search=shire",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"patients"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "shire"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
