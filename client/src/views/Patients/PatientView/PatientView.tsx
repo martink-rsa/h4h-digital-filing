@@ -9,6 +9,7 @@ import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import Accordion from "../../../components/Accordion/Accordion";
 import PatientSection from "../PatientSection/PatientSection";
+import Demographics from "./Demographics/Demographics";
 
 import IconPlus from "../../../assets/images/plus-icon.svg";
 import IconRefresh from "../../../assets/images/refresh-icon.svg";
@@ -73,7 +74,7 @@ function PatientView({ patient }: Props) {
   return (
     <S.Container>
       <S.HeaderInfoContainer>
-        Patient ID {patient.id} <span style={{ fontWeight: 500 }}>|</span>{" "}
+        Patient ID {patient.idNumber} <span style={{ fontWeight: 500 }}>|</span>{" "}
         <span>
           {patient.firstName} {patient.lastName}
         </span>
@@ -96,12 +97,20 @@ function PatientView({ patient }: Props) {
         </Button>
       </S.HeaderControlsContainer>
       <S.Content>
-        <PatientSection title="Demographics">asd</PatientSection>
-        <PatientSection title="Vital signs">asd</PatientSection>
-        <PatientSection title="Doctor's notes">asd</PatientSection>
-        <PatientSection title="Nursing notes">asd</PatientSection>
-        <PatientSection title="Investigations">
-          asd
+        <PatientSection title="Demographics">
+          <Demographics
+            age={patient.age}
+            maritalStatus={patient.maritalStatus}
+            occupation={patient.occupation}
+            nationality={patient.nationality}
+            idNumber={patient.idNumber}
+            ethnicity={patient.ethnicity}
+            gender={patient.gender}
+            email={patient.email}
+            phoneNumber={patient.phoneNumber}
+            address={patient.address}
+          />
+
           {files.map((file: File) => (
             <div>
               <img src={PdfIcon} alt="" /> {file.fileName}{" "}
@@ -111,6 +120,24 @@ function PatientView({ patient }: Props) {
             </div>
           ))}
         </PatientSection>
+        {/* <PatientSection title="Vital signs">asd</PatientSection>
+        <PatientSection title="Contact Details">
+          Phone Number: {patient.phoneNumber} <br />
+          Email: {patient.email} <br />
+          Address: {patient.address}
+        </PatientSection>
+        <PatientSection title="Demographics">
+          Gender: {patient.gender}<br />
+          Ethnicity: {patient.ethnicity} <br />
+          Martial Status: {patient.maritalStatus}
+        </PatientSection>
+        <PatientSection title="Vital Signs">
+          Weight: 30kg<br />
+          Height: 1.22m
+        </PatientSection> */}
+        <PatientSection title="Doctor's notes">asd</PatientSection>
+        <PatientSection title="Nursing notes">asd</PatientSection>
+        <PatientSection title="Investigations">asd</PatientSection>
       </S.Content>
       <Modal
         isOpen={modalIsOpen}
