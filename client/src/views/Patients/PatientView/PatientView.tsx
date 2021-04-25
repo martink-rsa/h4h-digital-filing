@@ -56,6 +56,9 @@ function PatientView({ patient }: Props) {
 
   function closeModal() {
     setIsOpen(false);
+    fileService.findFiles("", patient._id, "demographics").then((files) => {
+      setFiles(files);
+    });
   }
 
   /*  function afterOpenModal() {
