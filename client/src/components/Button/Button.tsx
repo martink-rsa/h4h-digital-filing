@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Button.style';
 
 type Props = {
-  onClick: () => any;
+  onClick: any;
   iconPosition?: string;
   secondary?: boolean;
   disabled?: boolean;
