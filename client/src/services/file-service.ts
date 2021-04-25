@@ -8,7 +8,7 @@ class FileService {
   constructor() {
     this.db.version(1).stores({
       files:
-        "++id, fileName, fileType, size, extractedText, fileBlob, tags, category",
+        "++id, _id, fileName, fileType, size, extractedText, fileBlob, tags, category, patientId",
     });
   }
 
@@ -18,14 +18,25 @@ class FileService {
 
   async findFiles(
     keyword: string = "",
+    patientId?: string,
+    category?: string,
     tags: Array<any> = [],
-    categories: Array<any> = [],
     name?: string,
     fileType?: string
   ): Promise<Array<File>> {
     // TODO: Maybe query db high level before doing Fuze/Fuzzy search
 
-    const docs = await this.db.files.toArray();
+    let where: any = {};
+
+    if (patientId) {
+      where.patientId = patientId;
+    }
+
+    if (category) {
+      where.category = category;
+    }
+
+    const docs = await this.db.files.where(where).toArray();
 
     if (!keyword) return docs;
 
