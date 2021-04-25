@@ -11,6 +11,9 @@ export class Patient extends mongoose.Document {
   gender?: string;
   email?: string;
   phoneNumber?: string;
+  nationality?: string;
+  age?: string;
+  occuptation?: string;
 }
 
 export const PatientSchema: mongoose.Schema = new mongoose.Schema({
@@ -23,6 +26,9 @@ export const PatientSchema: mongoose.Schema = new mongoose.Schema({
   gender: { type: String, required: false },
   email: { type: String, required: false },
   phoneNumber: { type: String, required: false },
+  nationality: { type: String, required: false},
+  age: { type: String, required: false},
+  occupation: { type: String, required: false},
 });
 
 PatientSchema.plugin(mongoose_fuzzy_searching, { fields: ['firstName', 'lastName', 'idNumber', 'email'] });
