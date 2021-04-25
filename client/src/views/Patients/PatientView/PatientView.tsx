@@ -89,9 +89,34 @@ function PatientView({ patient }: Props) {
       </S.HeaderControlsContainer>
       <S.Content>
         <PatientSection title="Demographics">
-          <Demographics />
+          <Demographics
+            age={patient.age}
+            maritalStatus={patient.maritalStatus}
+            occupation={patient.occupation}
+            nationality={patient.nationality}
+            idNumber={patient.idNumber}
+            ethnicity={patient.ethnicity}
+            gender={patient.gender}
+            email={patient.email}
+            phoneNumber={patient.phoneNumber}
+            address={patient.address}
+          />
         </PatientSection>
-        <PatientSection title="Vital signs">asd</PatientSection>
+        {/* <PatientSection title="Vital signs">asd</PatientSection>
+        <PatientSection title="Contact Details">
+          Phone Number: {patient.phoneNumber} <br />
+          Email: {patient.email} <br />
+          Address: {patient.address}
+        </PatientSection>
+        <PatientSection title="Demographics">
+          Gender: {patient.gender}<br />
+          Ethnicity: {patient.ethnicity} <br />
+          Martial Status: {patient.maritalStatus}
+        </PatientSection>
+        <PatientSection title="Vital Signs">
+          Weight: 30kg<br />
+          Height: 1.22m
+        </PatientSection> */}
         <PatientSection title="Doctor's notes">asd</PatientSection>
         <PatientSection title="Nursing notes">asd</PatientSection>
         <PatientSection title="Investigations">asd</PatientSection>
