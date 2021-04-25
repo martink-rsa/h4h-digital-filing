@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import { PatientsRouter } from './patients';
 import { HTTPResponse } from './types/httpTypes';
 
@@ -6,6 +7,7 @@ const app = express();
 
 const { checkJWT } = require('./util/jwt');
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/test', checkJWT, (req: Express.Request, res: HTTPResponse) => {

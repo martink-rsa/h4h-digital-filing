@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import * as S from './SearchView.style';
+import React, { useState } from "react";
+import * as S from "./SearchView.style";
 
-import Button from '../../../components/Button/Button';
-import Input from '../../../components/Input/Input';
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Input/Input";
 
-import IconPlus from '../../../assets/images/plus-icon.svg';
-import { doFetch } from '../../../components/utils/common';
+import IconPlus from "../../../assets/images/plus-icon.svg";
 
 type Props = {
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (searchTerm: string) => void;
   handleAddPatient: () => void;
 };
 
 function SearchView({ handleSubmit, handleAddPatient }: Props) {
-  const [searchId, setSearchId] = useState('');
+  const [searchId, setSearchId] = useState("");
 
   function handleChange(event: React.FormEvent<HTMLFormElement>) {
     const { value } = event.currentTarget;
@@ -27,7 +26,7 @@ function SearchView({ handleSubmit, handleAddPatient }: Props) {
           Add new patient
         </Button>
       </S.AddNewPatientContainer>
-      <S.Form onSubmit={handleSubmit}>
+      <S.Form>
         <Input
           id="input-patient-id"
           name="input-patient-id"
@@ -38,7 +37,7 @@ function SearchView({ handleSubmit, handleAddPatient }: Props) {
           value={searchId}
           pattern="[0-9]{1,10}"
         />
-        <Button onClick={handleAddPatient} type="submit" width="170px">
+        <Button onClick={() => handleSubmit(searchId)} width="170px">
           Search
         </Button>
       </S.Form>
