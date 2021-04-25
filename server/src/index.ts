@@ -1,7 +1,15 @@
 import app from './app';
+import config from './config';
+import { connectDb } from './database';
 
-const port = process.env.PORT;
-
-app.listen(port, () => {
-  console.log('Server is up on port:', port);
-});
+connectDb()
+  .then(() => {
+    const port = config.port;
+    app.listen(port, () => {
+      console.log('Server is up on port:', port);
+    });
+  })
+  .catch((err) => {
+    console.log(`Failed to connect to the DB: `, err);
+    process.exit(1);
+  });
