@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export type ButtonProps = {
   secondary?: boolean;
   width: string;
+  iconPosition: string;
 };
 
 export const BaseButton = styled.button<ButtonProps>`
@@ -30,7 +31,8 @@ export const BaseButton = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   img {
-    margin-left: 8px;
+    margin: ${(props) =>
+      props.iconPosition === 'left' ? '0 8px 0 0' : '0 0 0 8px'};
     height: 18px;
     width: 18px;
   }
@@ -46,4 +48,11 @@ export const DisabledButton = styled(BaseButton)`
   background: #999;
   cursor: default;
   pointer-events: none;
+`;
+
+export const InvertButton = styled(BaseButton)`
+  background: none;
+  border: 3px solid
+    ${(props) => (props.secondary ? props.theme.color.primary : '#fff')};
+  color: ${(props) => (props.secondary ? props.theme.color.primary : '#fff')};
 `;
