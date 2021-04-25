@@ -1,21 +1,28 @@
 import React from 'react';
 import * as S from './Header.style';
 
+import AddFileIcon from '../../assets/images/add-file-icon.svg';
+import AvatarIcon from '../../assets/images/avatar-icon.svg';
+
 type Props = {
-  logo: string;
+  handleAddFile: () => void;
 };
 
 /**
  * The main header for the site
  */
-function Header({ logo }: Props) {
+function Header({ handleAddFile }: Props) {
   return (
     <S.Wrapper>
-      <S.LogoContainer>
-        <S.Logo src={logo} alt="" />
-        Digital Filing
-      </S.LogoContainer>
-      <S.NavMenu />
+      <S.LeftContainer>
+        <img src={AvatarIcon} alt="Add file" />
+        Denish Pradana
+      </S.LeftContainer>
+      <div>
+        <S.IconButton onClick={handleAddFile}>
+          <img src={AddFileIcon} alt="Add file" />
+        </S.IconButton>
+      </div>
     </S.Wrapper>
   );
 }

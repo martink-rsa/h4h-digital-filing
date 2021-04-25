@@ -15,7 +15,6 @@ export const Container = styled.main`
   width: 100%;
   margin: 0 auto;
   margin-top: 160px;
-  /* background: lightblue; */
   font-size: 16px;
 `;
 
@@ -24,7 +23,6 @@ export const Logo = styled.img`
   height: 275px;
   margin-bottom: 32px;
   @media (max-width: ${({ theme }) => theme.breakpoints.xs + 'px'}) {
-    background: blue;
     width: 100%;
     height: auto;
   }
@@ -78,7 +76,6 @@ export const Button = styled.button`
   padding: 26px 0 26px 0;
   font-size: 30px;
   font-weight: 600;
-  letter-spacing: -1px;
   color: #fff;
   background: ${(props) => props.theme.color.primary};
 `;
